@@ -1,0 +1,45 @@
+package com.product_hibernate;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.product.Product;
+import com.product.ProductDao;
+
+public class ProductDaoTest {
+
+	
+	
+	EntityManagerFactory emf;
+	@BeforeEach
+	public void initEmf() {
+		System.out.println("init emf");
+		
+		emf = Persistence.createEntityManagerFactory("postgres");
+	}
+	
+	@Test
+	public void insertProductTest() {
+		ProductDao dao=new ProductDao();
+		Product product = new Product();
+		product.setId(2);
+		product.setName("Pencil");
+		product.setPrice(5);
+		
+		dao.insertProduct(product);
+	}
+	
+	@Test
+	public void findById() {
+		ProductDao dao = new ProductDao();
+		Product p = dao.findById(2);
+		assertNotNull(p);
+	}
+	
+	
+}

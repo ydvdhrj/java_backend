@@ -1,0 +1,66 @@
+package com.connectdatabase;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class EmployeeDynamicCrud {
+	public static void main(String[] args) {
+		
+		String url = "jdbc:postgresql://localhost:5433/school";
+		String un = "postgres";
+		String pwd = "root";
+		
+		Scanner scan = new Scanner(System.in);
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect = DriverManager.getConnection(url,un,pwd);
+			
+//			for inserting data
+			
+//			String sql = "insert into employee values(?,?,?,?)";
+//			
+//			PreparedStatement pstm = connect.prepareStatement(sql);
+//			
+//			int id  = scan.nextInt();
+//			pstm.setInt(1, id);
+//			
+//			scan.nextLine();
+//			String name = scan.nextLine();
+//			pstm.setString(2, name);
+//			
+//			double sal = scan.nextDouble();
+//			pstm.setDouble(3, sal);
+//			
+//			String gender = scan.next();
+//			pstm.setString(4, gender);
+//			
+//			pstm.execute();
+			
+			
+//			for updating data
+			
+			String sql2 = "update employee set sal=? where id=?";
+			
+			PreparedStatement pstm = connect.prepareStatement(sql2);
+			
+			double sal = scan.nextDouble();
+			pstm.setDouble(0, sal);
+			
+			int id = scan.nextInt();
+			pstm.setInt(1, id);
+			
+			pstm.execute();
+			
+			connect.close();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

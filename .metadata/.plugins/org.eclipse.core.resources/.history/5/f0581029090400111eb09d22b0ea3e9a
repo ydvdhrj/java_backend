@@ -1,0 +1,20 @@
+package com.prac;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+public class CalculatorTest {
+	
+	public void addTest() {
+		int res = Calculator.add(20, 30);
+	}
+	
+	@Test
+	public void reverseTest() {
+		String actualres = Calculator.reverseString("data");
+		
+		assertEquals("atad",actualres);
+		
+	}
+}

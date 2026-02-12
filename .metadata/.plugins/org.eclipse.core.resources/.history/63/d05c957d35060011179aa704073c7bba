@@ -1,0 +1,48 @@
+package com.connectdatabase;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class ToReadData {
+	public static void main(String[] args) {
+		
+		String url = "jdbc:postgresql://localhost:5433/school";
+		String un = "postgres";
+		String pwd = "root";
+		
+		Scanner scan = new Scanner(System.in); 
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			
+			Connection connect = DriverManager.getConnection(url,un,pwd);
+			
+			String sql = "insert into student values(?,?,?,?)";   // ? -> it is a position delimeter it is used for dynamic data input
+			
+			PreparedStatement pstm = connect.prepareStatement(sql);
+			
+			int id = scan.nextInt();
+			pstm.setInt(1, id);
+			
+			String name = scan.next();
+			pstm.setString(2, name);
+			
+			String mail = scan.nextLine();
+			pstm.setString(3, mail);
+			
+			String gender = scan.next();
+			pstm.setString(4, gender);
+			
+			pstm.execute();
+			
+			connect.close();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

@@ -1,0 +1,102 @@
+package com.product_hibernate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.product.Product;
+import com.product.ProductDao;
+
+public class ProductDaoTest {
+
+	
+	
+	static EntityManagerFactory emf;
+	@BeforeAll // it is only used on static function and it will execute once
+	public static void initEmf() {
+		System.out.println("init emf");
+		
+		emf = Persistence.createEntityManagerFactory("postgres");
+	}
+	
+	 EntityManager em;
+	@BeforeEach
+	public void initEm() {
+		System.out.println("init em");
+		em = emf.createEntityManager();
+	}
+	
+//	EntityTransaction et;
+//	@BeforeEach
+//	public void initEt() {
+//		System.out.println("init et");
+//		et = em.getTransaction();
+//	}
+	
+	@Test
+	public void insertProductTest() {
+		System.out.println("product insert");
+		ProductDao dao=new ProductDao();
+		Product product = new Product();
+		product.setId(4);
+		product.setName("book");
+		product.setPrice(7);
+		
+		dao.insertProduct(product);
+	}
+	
+	@Test
+	public void findById() {
+		System.out.println("product find");
+		ProductDao dao = new ProductDao();
+		Product p = dao.findById(4);
+		assertNotNull(p);
+	}
+	
+	@Test
+	public void findByIdTestUnknownId() {
+		ProductDao dao = new ProductDao();
+		Product p = dao.findById(2);
+		assertNull(p);
+	}
+	
+	@Test
+	public void deleteByIdTest() {
+		ProductDao dao = new ProductDao();
+		String actualRes = dao.deleteById(3);
+		assertEquals("Deleted",actualRes);
+	}
+	
+	@Test
+	public void deleteTestUnknownId() {
+		ProductDao dao = new ProductDao();
+		String actualRes = dao.deleteById(7);
+		assertEquals("Data Not Exist",actualRes);
+	}
+	
+	
+	@AfterEach
+	public void destroyEm() {
+		System.out.println("destroy em");
+		em.close();
+	}
+	
+	@AfterAll
+	public static void destroyEmf() {
+		System.out.println("destroy emf");
+		emf.close();
+	}
+	
+	
+}

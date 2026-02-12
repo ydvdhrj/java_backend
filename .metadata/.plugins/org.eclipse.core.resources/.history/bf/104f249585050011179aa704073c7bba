@@ -1,0 +1,17 @@
+package com.connectdatabase;
+
+public class SteptoConnectDataBase {
+	
+	public static void main(String[] args) {
+		// Load the driver class
+		
+		try {
+			Class.forName("org.postgresql.driver");
+			System.out.println("Class Loaded");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

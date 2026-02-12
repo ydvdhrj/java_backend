@@ -1,0 +1,21 @@
+package com.practice;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		EntityManagerFactory emf =  Persistence.createEntityManagerFactory("postgres");
+		
+		EntityManager em = emf.createEntityManager();
+		
+		Student s = new Student();
+		s.setId(1);
+		s.setName("Virat");
+		s.setPercentage(80);
+		em.persist(s);
+	}
+}
