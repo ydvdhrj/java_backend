@@ -21,7 +21,7 @@ public class ProgramTest {
 	}
 	
 //	@ParameterizedTest
-//	@ValueSource(ints= {1,15,23,42})
+//	@ValueSource(ints= {1,15,23,42}) //-> for one parametric test
 	public void numberIsPositiveTest(int a) {
 		Program p = new Program();
 		assertTrue(p.numberIsPositive(a));
@@ -32,7 +32,7 @@ public class ProgramTest {
 //		"1,2,3",
 //		"5,5,10",
 //		"5,3,7"
-//	})
+//	})  //-> used for more than one parameterized test
 	public void addTest(int a,int b, int expectedResult) {
 		
 		Program p = new Program();
@@ -41,8 +41,8 @@ public class ProgramTest {
 	}
 	
 	
-	@ParameterizedTest
-	@CsvFileSource(resources = "/capgemini.csv",numLinesToSkip = 1)
+	@ParameterizedTest   //--> it is used for test with parameter
+	@CsvFileSource(resources = "/capgemini.csv",numLinesToSkip = 1)   //-> it is used to read the test from csv file
 	public void evenOrOddTest(String input,String expected) {
 		
 		EvenOrOdd eoo = new EvenOrOdd();

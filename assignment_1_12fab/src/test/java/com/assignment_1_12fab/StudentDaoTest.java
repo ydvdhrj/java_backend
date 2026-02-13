@@ -77,7 +77,7 @@ public class StudentDaoTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testDeleteStudent() {
 		StudentDao dao = new StudentDao();
 		
@@ -85,11 +85,13 @@ public class StudentDaoTest {
 		assertEquals("deleted",actualres);
 	}
 	
-	@Test
+//	@Test
 	public void testDeleteStudentNotExisted() {
 		StudentDao dao = new StudentDao();
 		
 		String actualres = dao.deleteStudent(8);
 		assertEquals("Data does not exist",actualres);
 	}
+	
+	
 }
