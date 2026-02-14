@@ -5,13 +5,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
+	@Mock
+	UserDao daomock;
+	
+	@InjectMocks
+	UserService service;
 
 	@Test
 	public void typeOfUser() {
 		//create mock object
-		UserDao daomock = mock(UserDao.class);
+//		UserDao daomock = mock(UserDao.class);
 		
 		//create fake object
 		User fakeObject = new User();
@@ -29,7 +39,7 @@ public class UserServiceTest {
 		
 		when(daomock.findById(2)).thenReturn(user1);
 		
-		UserService service = new UserService(daomock);
+//		UserService service = new UserService(daomock);
 		
 		String res = service.typeOfUser(1);
 		assertEquals("regular user",res);
@@ -38,4 +48,5 @@ public class UserServiceTest {
 		assertEquals("new user",res1);
 		
 	}
+	
 }
