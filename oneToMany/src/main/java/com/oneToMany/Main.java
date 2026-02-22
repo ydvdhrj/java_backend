@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class Main {
 
@@ -37,10 +38,25 @@ public class Main {
 		
 		c.setStudent(list);
 		
+		Query q = em.createNativeQuery("update college set location='jalandhar' where college_id=2");
+		
 		et.begin();
-		em.persist(c);
-		em.persist(s1);
-		em.persist(s2);
+//		em.persist(c);
+//		em.persist(s1);
+//		em.persist(s2);
+//		
+		College clg = em.find(College.class, 2);
+		System.out.println(clg.getLocation());
+		
+		System.out.println("=======================");
+		q.executeUpdate();
+		System.out.println("=======================");
+		em.clear();
+		College clg2 = em.find(College.class, 2);
+		System.out.println(clg2.getLocation());
+		
+		
+		
 		et.commit();
 	}
 }

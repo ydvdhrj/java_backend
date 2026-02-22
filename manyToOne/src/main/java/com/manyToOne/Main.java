@@ -31,9 +31,11 @@ public class Main {
 		e2.setSalary(3000);
 		e2.setDepartment(dept);
 		et.begin();
-		em.persist(dept);
-		em.persist(e2);
-		em.persist(e1);
+//		em.persist(dept);
+//		em.persist(e2);
+//		em.persist(e1);
+		
+		em.find(Employee.class, 1);
 		et.commit();
 	}
 }

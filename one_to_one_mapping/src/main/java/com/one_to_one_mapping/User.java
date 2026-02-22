@@ -11,7 +11,7 @@ public class User {
 	public static void main(String[] args) {
 //		insertCarAndEngine();
 		findByCarId();
-		deleteEngineById(100);
+//		deleteEngineById(100);
 		
 	}
 	
