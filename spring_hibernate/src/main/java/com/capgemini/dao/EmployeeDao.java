@@ -18,7 +18,7 @@ public class EmployeeDao {
 	@PostConstruct
 	public void init() {
 		
-		em = jpa.getEntityManager();
+			
 	}
 	
 	public void insert(Employee e) {
