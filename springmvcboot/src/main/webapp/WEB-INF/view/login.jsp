@@ -7,7 +7,7 @@
 Email : <input type="email" name="email"><br/>
 Password : <input type="password" name="password"><br/>
 
-Login : <input type="submit" name="login">
+<input type="submit" name="login">
 </form>
 
 </body>
